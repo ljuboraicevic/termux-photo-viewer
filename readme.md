@@ -15,11 +15,14 @@ The image can only be run on a host that has ssh keys that are needed to connect
         --restart unless-stopped \
         --name termux-photo-viewer-cont \
         -v /home/user/.ssh:/app/.ssh \
+        -e TPV_PORT='TERMUX_SSH_PORT' \
+        -e TPV_USER='TERMUX_USER' \
+        -e TPV_HOST='TERMUX_IP' \
         termux-photo-viewer
 
 ## Viewing the photos in the browser
 
-    http://localhost:5000/?port=<PORT>&user=<TERMUX_USER>&host=<TERMUX_DEVICE_IP>
+    http://localhost:5000/
 
 ## Termux setup
 

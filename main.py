@@ -1,14 +1,18 @@
 import subprocess
-from flask import Flask, send_file, request
+from flask import Flask, send_file
 import os 
 
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-	port = request.args.get('port')
-	user = request.args.get('user')
-	host = request.args.get('host')
+	
+	if not ('TPV_PORT' in os.environ and 'TPV_USER' in os.environ and 'TPV_HOST' in os.environ):
+		return "Port, user or host env vars are not set."
+	
+	port = os.environ.get('TPV_PORT')
+	user = os.environ.get('TPV_USER')
+	host = os.environ.get('TPV_HOST')
 	photo_name = "photo.jpg"
 	local_path = os.path.dirname(os.path.realpath(__file__))
 	remote_path = f"/data/data/com.termux/files/home"
