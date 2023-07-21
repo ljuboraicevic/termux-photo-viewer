@@ -1,0 +1,28 @@
+import subprocess
+from flask import Flask, send_file, request
+import os 
+
+app = Flask(__name__)
+
+@app.route("/")
+def main():
+	port = request.args.get('port')
+	user = request.args.get('user')
+	host = request.args.get('host')
+	photo_name = "photo.jpg"
+	local_path = os.path.dirname(os.path.realpath(__file__))
+	remote_path = f"/data/data/com.termux/files/home"
+	# this option allows ssh to proceed even if the remote server's keys
+	# are not in authorized keys
+	accept_new = "StrictHostKeyChecking=accept-new"
+	
+	command0 = f'rm -f {local_path}/{photo_name}'
+	subprocess.run(command0, shell=True)
+	
+	command1 = f'ssh -i /app/.ssh/id_rsa -o {accept_new} -p {port} {user}@{host} "rm -f {photo_name} && termux-camera-photo {photo_name}"'
+	subprocess.run(command1, shell=True)
+	
+	command2 = f'scp -i /app/.ssh/id_rsa -o {accept_new} -P {port} {user}@{host}:{remote_path}/{photo_name} {local_path}/'
+	subprocess.run(command2, shell=True)
+	
+	return send_file(f'{local_path}/{photo_name}', mimetype='image/jpeg')
