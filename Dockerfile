@@ -1,6 +1,3 @@
-# docker build --progress=plain --tag termux-photo-viewer .
-# docker run --restart unless-stopped --net=host --name termux-photo-viewer-cont -v /home/ljubo/.ssh:/app/.ssh termux-photo-viewer
-
 FROM python:3.8-slim-buster
 
 WORKDIR /app
