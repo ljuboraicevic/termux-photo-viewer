@@ -10,7 +10,12 @@ Take photos on Android devices using Termux and view them in your browser.
 
 The image can only be run on a host that has ssh keys that are needed to connect to the Android device. These keys need to be mounted as a volume into the container.
 
-    docker run -d -p 5000:5000 --restart unless-stopped --name termux-photo-viewer-cont -v /home/user/.ssh:/app/.ssh termux-photo-viewer
+    docker run -d \
+        -p 5000:5000 \
+        --restart unless-stopped \
+        --name termux-photo-viewer-cont \
+        -v /home/user/.ssh:/app/.ssh \
+        termux-photo-viewer
 
 ## Viewing the photos in the browser
 
