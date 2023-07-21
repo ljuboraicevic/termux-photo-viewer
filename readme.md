@@ -8,7 +8,7 @@ Take photos on Android devices using Termux and view them in your browser.
 
 ## Running the image
 
-    docker run --restart unless-stopped --net=host --name termux-photo-viewer-cont -v /home/user/.ssh:/app/.ssh termux-photo-viewer
+    docker run -p 5000:5000 --restart unless-stopped --name termux-photo-viewer-cont -v /home/user/.ssh:/app/.ssh termux-photo-viewer
 
 ## Viewing the photos in the browser
 
