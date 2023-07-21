@@ -21,8 +21,11 @@ Take photos on Android devices using Termux and view them in your browser.
 2. Install openssh
 
 	a. apk install openssh
+	
 	b. set up password (https://wiki.termux.com/wiki/Remote_Access#Using_the_SSH_server)
+	
 	c. run sshd
+	
 	d. obtain a wake lock in the Termux notification item
 
 3. The device is now ready to receive ssh connections
